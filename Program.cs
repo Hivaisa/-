@@ -1,60 +1,71 @@
-﻿// See https://aka.ms/new-console-template0 for more information
-using System.Diagnostics;
-using System.Threading.Channels;
-//شیرزاد عیسی بیگلو
-Console.WriteLine(" lotfan soalat ra fght ba yes ya no jvab dahid  ");
-Console.WriteLine("aya be reshteyeh computer alaghe dari? ");
-var answer1 = Console.ReadLine();
-switch (answer1) {
-    case "no":
-        Console.WriteLine("aya be khatere khanevadat omadi computer?");
-        var answer2 = Console.ReadLine();
-        if (answer2 == "no")
-        {
-            Console.WriteLine("aya be khatere dramadesh omadi?");
-            var answer3 = Console.ReadLine();
-            if (answer3 == "no")
-            {
-                Console.WriteLine("aya be khater moshvert omadi?");
-                var answer4 = Console.ReadLine();
-                if (answer4 == "no")
-                {
-                    Console.WriteLine(" khob gosfand chera omadi ? nmikhad jvab bedi ");
+﻿// See https://aka.ms/new-console-template for more information
+Console.WriteLine("Hello, World!");
 
-                }
-                else {
-                    Console.WriteLine(" khob gosfand chera omadi ");
-                }
-            }
-            else
-            {
-                Console.WriteLine("aya az daramadesh razi hasti?");
-                var answer5 = Console.ReadLine();
-                if (true) {
-                    Console.WriteLine("khob gosfand nemikhad jvab bedi ");
-                }
-            }
-        }
-        else {
-            Console.WriteLine("aya az karet pashimani?");
-            var answer6 = Console.ReadLine();
-            if (answer6 == "no")
-            {
-                Console.WriteLine("khob gosfandi dige");
-            }
-            else {
-                Console.WriteLine("be darak");
-            }
-        }
-            break;
-    case "yes":
-        Console.WriteLine("aya az reshteye computer razi hasti?");
-        var ansvwer7 = Console.ReadLine();
-        if (true) {
-            Console.WriteLine("shayad bavaret nashe ama aslan bram mhem nist ");
-        }
-        break;
+string alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+Console.Write("Please enter the sender's name (only English letters): ");
+string sender = Console.ReadLine(); 
+
+
+Console.Write("Please enter the receiver's name (only English letters): ");
+string receiver = Console.ReadLine(); 
+
+
+int senderSum = 0;
+foreach (char c in sender.ToLower()) 
+{
+     if (char.IsLetter(c)) 
+     {
+        int index = alphabet.IndexOf(c); 
+        senderSum += index; 
+     }
 }
 
 
+int receiverSum = 0;
+foreach (char c in receiver.ToLower()) 
+{
+    if (char.IsLetter(c)) 
+    {
+        int index = alphabet.IndexOf(c); 
+        receiverSum += index; 
+    }
+}
 
+int shift = (senderSum + receiverSum) % 26;
+Console.WriteLine("The shift value is: " + shift);
+
+Console.Write("Please enter the message to encrypt (only English letters): ");
+string message = Console.ReadLine(); 
+
+
+string encryptedMessage = "";
+foreach (char c in message.ToLower()) 
+{
+    if (char.IsLetter(c)) 
+    {
+        int index = (alphabet.IndexOf(c) + shift) % 26; 
+        encryptedMessage += alphabet[index]; 
+    }
+    else
+    {
+        encryptedMessage += c; 
+    }
+}
+Console.WriteLine("Encrypted message: " + encryptedMessage);
+
+string decryptedMessage = "";
+foreach (char c in encryptedMessage.ToLower()) 
+{
+    if (char.IsLetter(c))
+    {
+        int index = (alphabet.IndexOf(c) - shift + 26) % 26;
+        decryptedMessage += alphabet[index];
+    }
+    else
+    {
+        decryptedMessage += c; 
+    }
+}
+Console.WriteLine("Decrypted message: " + decryptedMessage);
+    
